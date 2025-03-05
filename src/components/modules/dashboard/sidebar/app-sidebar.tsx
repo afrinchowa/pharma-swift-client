@@ -24,7 +24,8 @@ import {
 import { NavMain } from "./nav-main";
 import { NavUser } from "./nav-user";
 import Link from "next/link";
-import Logo from "@/app/assets/svgs/Logo";
+import Logo from "@/assets/svgs/Logo";
+
 
 const data = {
   navMain: [
@@ -36,7 +37,7 @@ const data = {
     },
     {
       title: "Shop",
-      url: "/user/shop/all-products",
+      url: "/user/shop/products",
       icon: Bot,
       items: [
         {

@@ -1,5 +1,5 @@
 "use client";
-import Logo from "@/app/assets/svgs/Logo";
+
 import { Button } from "../ui/button";
 import { Heart, LogOut, ShoppingBag } from "lucide-react";
 import Link from "next/link";
@@ -17,6 +17,7 @@ import { useUser } from "@/context/UserContext";
 import { usePathname, useRouter } from "next/navigation";
 import { logout } from "@/app/services/AuthService";
 import { protectedRoutes } from "@/constants";
+import Logo from "@/assets/svgs/Logo";
 
 
 export default function Navbar() {
@@ -72,7 +73,7 @@ export default function Navbar() {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                  <Link href="/user/dashboard"><DropdownMenuItem>Dashboard</DropdownMenuItem> </Link>
                   <DropdownMenuItem>My Shop</DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
