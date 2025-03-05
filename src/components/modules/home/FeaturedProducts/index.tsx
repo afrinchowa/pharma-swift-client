@@ -2,6 +2,7 @@ import { getAllProducts } from "@/app/services/Product";
 import { IProduct } from "@/app/types/product";
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/ui/core/ProductCard";
+import PSContainer from "@/components/ui/core/PSContainer";
 
 import Link from "next/link";
 
@@ -9,7 +10,8 @@ const FeaturedProducts = async () => {
   const { data: products } = await getAllProducts();
 
   return (
-    <div className="bg-white bg-opacity-50 px-4 py-10">
+  <PSContainer>
+      <div className="bg-white bg-opacity-50 px-4 py-10">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <h2 className="font-bold text-2xl">Featured Products</h2>
@@ -29,6 +31,7 @@ const FeaturedProducts = async () => {
         </div>
       </div>
     </div>
+  </PSContainer>
   );
 };
 

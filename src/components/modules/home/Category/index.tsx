@@ -2,13 +2,15 @@ import { getAllCategories } from "@/app/services/Category";
 import { ICategory } from "@/app/types/category";
 import { Button } from "@/components/ui/button";
 import CategoryCard from "@/components/ui/core/CategoryCard";
+import PSContainer from "@/components/ui/core/PSContainer";
 
 import Link from "next/link";
 
 const Category = async () => {
   const { data: categories } = await getAllCategories();
   return (
-    <div className="pl-4 pr-4">
+ <PSContainer>
+     <div className="pl-4 pr-4">
         <div className="container mx-auto my-20">
       <div className="flex items-center justify-between">
         <h2 className="font-bold text-2xl">Category</h2>
@@ -27,6 +29,7 @@ const Category = async () => {
       </div>
     </div>
     </div>
+ </PSContainer>
   );
 };
 

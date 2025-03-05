@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import styles from "./HeroSection.module.css";
+import PSContainer from "@/components/ui/core/PSContainer";
 // import Image from "next/image";
 
 const HeroSection = () => {
   return (
-   <div className="pl-4 pr-4">
+  <PSContainer>
+     <div className="pl-4 pr-4">
      <div
       className={`${styles.banner} container mx-auto border-2 border-white rounded-3xl mt-5`}
     >
@@ -30,6 +32,7 @@ const HeroSection = () => {
       </div>
     </div>
    </div>
+  </PSContainer>
   );
 };
 
