@@ -17,13 +17,10 @@ import Logo from "@/app/assets/svgs/Logo";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { toast } from "sonner";
-
-import { useState } from "react";
 import { loginSchema } from "./loginValidation";
-import {
-  loginUser,
-  reCaptchaTokenVerification,
-} from "@/app/services/AuthService";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { loginUser, reCaptchaTokenVerification } from "@/app/services/AuthService";
 
 export default function LoginForm() {
   const form = useForm({
@@ -31,6 +28,10 @@ export default function LoginForm() {
   });
 
   const [reCaptchaStatus, setReCaptchaStatus] = useState(false);
+
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirectPath");
+  const router = useRouter();
 
   const {
     formState: { isSubmitting },
@@ -52,6 +53,11 @@ export default function LoginForm() {
       const res = await loginUser(data);
       if (res?.success) {
         toast.success(res?.message);
+        if (redirect) {
+          router.push(redirect);
+        } else {
+          router.push("/profile");
+        }
       } else {
         toast.error(res?.message);
       }
@@ -100,7 +106,7 @@ export default function LoginForm() {
 
           <div className="flex mt-3 w-full">
             <ReCAPTCHA
-              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY as string}
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY!}
               onChange={handleReCaptcha}
               className="mx-auto"
             />

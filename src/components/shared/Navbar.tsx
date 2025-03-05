@@ -1,15 +1,8 @@
 "use client";
 import Logo from "@/app/assets/svgs/Logo";
 import { Button } from "../ui/button";
-import {
-  Heart,
-  LogIn,
-  LogOut,
-  LucideShoppingBasket,
-  ShoppingBag,
-} from "lucide-react";
+import { Heart, LogOut, ShoppingBag } from "lucide-react";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,23 +11,35 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { logout } from "@/app/services/AuthService";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
 import { useUser } from "@/context/UserContext";
+import { usePathname, useRouter } from "next/navigation";
+import { logout } from "@/app/services/AuthService";
+import { protectedRoutes } from "@/constants";
+
 
 export default function Navbar() {
   const { user, setIsLoading } = useUser();
+  const pathname = usePathname();
+  const router = useRouter();
+
   const handleLogOut = () => {
     logout();
     setIsLoading(true);
+    if (protectedRoutes.some((route) => pathname.match(route))) {
+      router.push("/");
+    }
   };
 
   return (
     <header className="border-b w-full">
       <div className="container flex justify-between items-center mx-auto h-16 px-3">
-        <h1 className="text-2xl font-black flex items-center">
-          <Logo />
-          PharmaSwift
-        </h1>
+        <Link href="/">
+          <h1 className="text-2xl font-black flex items-center">
+            <Logo /> Next Mart
+          </h1>
+        </Link>
         <div className="max-w-md  flex-grow">
           <input
             type="text"
@@ -49,18 +54,15 @@ export default function Navbar() {
           <Button variant="outline" className="rounded-full p-0 size-10">
             <ShoppingBag />
           </Button>
+
           {user ? (
             <>
-              <Link href="/create-medicine">
-                <Button variant="outline" className="rounded-full p-2 ">
-                  Create Medicine
-                  <LucideShoppingBasket />
-                </Button>
+              <Link href="/create-shop">
+                <Button className="rounded-full">Create Shop</Button>
               </Link>
 
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  {" "}
                   <Avatar>
                     <AvatarImage src="https://github.com/shadcn.png" />
                     <AvatarFallback>User</AvatarFallback>
@@ -71,22 +73,22 @@ export default function Navbar() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>Profile</DropdownMenuItem>
                   <DropdownMenuItem>Dashboard</DropdownMenuItem>
-                  <DropdownMenuItem>My Cart</DropdownMenuItem>
+                  <DropdownMenuItem>My Shop</DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     className="bg-red-500 cursor-pointer"
                     onClick={handleLogOut}
                   >
-                    Logout <LogOut />{" "}
+                    <LogOut />
+                    <span>Log Out</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </>
           ) : (
             <Link href="/login">
-              <Button variant="outline" className="rounded-full p-0 ">
+              <Button className="rounded-full" variant="outline">
                 Login
-                <LogIn />
               </Button>
             </Link>
           )}
