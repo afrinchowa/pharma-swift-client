@@ -118,7 +118,7 @@ export default function RegisterForm() {
           />
 
           <Button
-           disabled={passwordConfirm && password !== passwordConfirm}
+            disabled={Boolean(passwordConfirm) && password !== passwordConfirm}
             type="submit"
             className="mt-5 w-full"
           >

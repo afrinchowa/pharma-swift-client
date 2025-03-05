@@ -20,7 +20,10 @@ import { toast } from "sonner";
 
 import { useState } from "react";
 import { loginSchema } from "./loginValidation";
-import { loginUser, reCaptchaTokenVerification } from "@/app/services/AuthService";
+import {
+  loginUser,
+  reCaptchaTokenVerification,
+} from "@/app/services/AuthService";
 
 export default function LoginForm() {
   const form = useForm({
@@ -97,7 +100,7 @@ export default function LoginForm() {
 
           <div className="flex mt-3 w-full">
             <ReCAPTCHA
-              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY}
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY as string}
               onChange={handleReCaptcha}
               className="mx-auto"
             />
