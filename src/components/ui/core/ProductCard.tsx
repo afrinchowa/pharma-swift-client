@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-
 import { Heart, ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -42,8 +41,8 @@ const ProductCard = ({ product }: { product: IProduct }) => {
             title={product?.name}
             className="font-semibold cursor-pointer text-sm"
           >
-            {product?.name.length > 30
-              ? product?.name?.slice(0, 30) + "..."
+            {product?.name.length > 20
+              ? product?.name?.slice(0, 20) + "..."
               : product?.name}
           </CardTitle>
         </Link>
@@ -53,12 +52,16 @@ const ProductCard = ({ product }: { product: IProduct }) => {
             {product?.offerPrice ? (
               <>
                 <span className="font-semibold mr-2 text-orange-400">
-                  $ {product?.offerPrice}
+                  $ {product?.offerPrice.toFixed(2)}
                 </span>
-                <del className="font-semibold text-xs">$ {product?.price}</del>
+                <del className="font-semibold text-xs">
+                  $ {product?.price.toFixed(2)}
+                </del>
               </>
             ) : (
-              <span className="font-semibold">$ {product?.price}</span>
+              <span className="font-semibold">
+                $ {product?.price.toFixed(2)}
+              </span>
             )}
           </p>
 

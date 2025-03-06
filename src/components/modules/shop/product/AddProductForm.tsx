@@ -39,9 +39,10 @@ import { ICategory } from "@/app/types/category";
 import { getAllBrands } from "@/app/services/Brand";
 import { getAllCategories } from "@/app/services/Category";
 import { addProduct } from "@/app/services/Product";
-import Logo from "@/app/assets/svgs/Logo";
+
 import PSImageUploader from "@/components/ui/core/PSImageUploader";
 import ImagePreviewer from "@/components/ui/core/PSImageUploader/ImagePreviewer";
+import Logo from "@/assets/svgs/Logo";
 
 export default function AddProductsForm() {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);

@@ -8,28 +8,23 @@ import Link from "next/link";
 
 const Category = async () => {
   const { data: categories } = await getAllCategories();
+
   return (
- <PSContainer>
-     <div className="pl-4 pr-4">
-        <div className="container mx-auto my-20">
+    <PSContainer className="my-20">
       <div className="flex items-center justify-between">
-        <h2 className="font-bold text-2xl">Category</h2>
+        <h2 className="text-3xl font-bold">Category</h2>
         <Link href="/products">
           <Button variant="outline" className="rounded-full">
             View All
           </Button>
         </Link>
       </div>
-      <div className="grid grid-cols-5 gap-8 my-5">
-        {Array(10)
-          .fill(categories?.[0])
-          .map((category: ICategory, idx: number) => (
-            <CategoryCard key={idx} category={category} />
-          ))}
+      <div className="grid grid-cols-6 gap-6 mt-10">
+        {categories?.slice(0, 6).map((category: ICategory, idx: number) => (
+          <CategoryCard key={idx} category={category} />
+        ))}
       </div>
-    </div>
-    </div>
- </PSContainer>
+    </PSContainer>
   );
 };
 

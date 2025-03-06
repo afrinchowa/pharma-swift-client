@@ -37,13 +37,14 @@ import { toast } from "sonner";
 
 import ImagePreviewer from "@/components/ui/core/PSImageUploader/ImagePreviewer";
 import PSImageUploader from "@/components/ui/core/PSImageUploader";
-import Logo from "@/app/assets/svgs/Logo";
+
 import { ICategory } from "@/app/types/category";
 import { IBrand } from "@/app/types/brand";
 import { IProduct } from "@/app/types/product";
 import { getAllBrands } from "@/app/services/Brand";
 import { getAllCategories } from "@/app/services/Category";
 import { updateProduct } from "@/app/services/Product";
+import Logo from "@/assets/svgs/Logo";
 
 export default function UpdateProductForm({ product }: { product: IProduct }) {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);

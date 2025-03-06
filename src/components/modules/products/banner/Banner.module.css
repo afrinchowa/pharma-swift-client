@@ -1,0 +1,7 @@
+.banner {
+    background: url("../../../../assets/svgs/banner2.jpg");
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
