@@ -18,12 +18,12 @@ import {
 
 interface PSTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  data?: TData[]; // Allow optional data
 }
 
 export function PSTable<TData, TValue>({
   columns,
-  data,
+  data = [], // Default to an empty array if undefined
 }: PSTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -37,26 +37,24 @@ export function PSTable<TData, TValue>({
         <TableHeader>
           {table?.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id} className="bg-gray-200">
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableHead
-                    className="font-bold text-gray-600"
-                    key={header.id}
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                );
-              })}
+              {headerGroup.headers.map((header) => (
+                <TableHead
+                  className="font-bold text-gray-600"
+                  key={header.id}
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </TableHead>
+              ))}
             </TableRow>
           ))}
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
+          {table.getRowModel()?.rows?.length > 0 ? ( // Ensure rows exist
             table.getRowModel().rows.map((row) => (
               <TableRow
                 key={row.id}

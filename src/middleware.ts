@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "./app/services/AuthService";
 
-
 type Role = keyof typeof roleBasedPrivateRoutes;
 
 const authRoutes = ["/login", "/register"];
@@ -22,7 +21,7 @@ export const middleware = async (request: NextRequest) => {
     } else {
       return NextResponse.redirect(
         new URL(
-          `http://localhost:3000/login?redirectPath=${pathname}`,
+          // `https://pharmaswift-client-976owx9l0-moriom-afrin-soyas-projects.vercel.app/login?redirectPath=${pathname}`,
           request.url
         )
       );

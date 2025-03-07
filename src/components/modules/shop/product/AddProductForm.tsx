@@ -22,7 +22,6 @@ import { useEffect, useState } from "react";
 
 import { Plus } from "lucide-react";
 
-
 import {
   Select,
   SelectContent,
@@ -30,7 +29,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -218,7 +216,7 @@ export default function AddProductsForm() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {categories.map((category) => (
+                      {(categories ?? []).map((category) => (
                         <SelectItem key={category?._id} value={category?._id}>
                           {category?.name}
                         </SelectItem>

@@ -26,7 +26,6 @@ import { NavUser } from "./nav-user";
 import Link from "next/link";
 import Logo from "@/assets/svgs/Logo";
 
-
 const data = {
   navMain: [
     {
@@ -110,7 +109,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Logo />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <h2 className="font-bold text-xl">NextMart</h2>
+                  <h2 className="font-bold text-xl">PharmaSwift</h2>
                 </div>
               </Link>
             </SidebarMenuButton>
